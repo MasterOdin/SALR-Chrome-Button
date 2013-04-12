@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "Something Awful Last Read Redux Button", 
   "version": "1.1.4",
-=======
-  "name": "Something Awful Last Read Browser Button", 
-  "version": "1.1.3",
->>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
   "manifest_version": 2,  
   "description": "Replaces the page action feature of SALR for Chrome with a global browser action button", 
   "icons": {
@@ -15,8 +10,7 @@
 			  "128": "images/logo128.png"
 		   },
   "permissions": [
-    "tabs",
-    "management"
+    "tabs"
   ],
   "browser_action": {
         "default_icon": "images/logo16.png",
