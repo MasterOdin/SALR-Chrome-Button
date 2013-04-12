@@ -1,5 +1,8 @@
 // Copyright (c) 2009, Scott Ferguson
+<<<<<<< HEAD
 // Copyright (c) 2013, Matthew Peveler
+=======
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -13,10 +16,17 @@
 //       names of its contributors may be used to endorse or promote products
 //       derived from this software without specific prior written permission.
 // 
+<<<<<<< HEAD
 // THIS SOFTWARE IS PROVIDED BY THE AUTHORS ''AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 // DISCLAIMED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY
+=======
+// THIS SOFTWARE IS PROVIDED BY SCOTT FERGUSON ''AS IS'' AND ANY
+// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL SCOTT FERGUSON BE LIABLE FOR ANY
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
 // DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
 // (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
 // LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
@@ -25,9 +35,37 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // Fetch extension settings
+<<<<<<< HEAD
 var parentExtensionId = 'bogegdelcjhoaakaepmoglademmhiboo';
 var settings = {};
 var port = chrome.extension.connect(parentExtensionId);
+=======
+var parentExtensionId = 'nlcklobeoigfjmcigmhbjkepmniladed';
+var parentExtensionIdNew = 'bogegdelcjhoaakaepmoglademmhiboo';
+
+var settings = {};
+
+chrome.management.get(parentExtensionIdNew, function(data) {
+    if(data != undefined && data.enabled == true) {
+        var port = chrome.extension.connect(parentExtensionIdNew)
+    }
+    else {
+        var port = chrome.extension.connect(parentExtensionId);
+    }
+    
+    port.onMessage.addListener(function(data) {
+        settings = data;
+
+        console.log(settings);
+        
+        populateMenu();    
+    });
+
+    port.postMessage({
+        'message': 'GetForumsJumpList'
+    });    
+});
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
 
 /**
  * Opens a link in a tab. 
@@ -36,7 +74,13 @@ function openTab(tabUrl) {
     var button = event.button;
     if (button > 1)
         return;
+<<<<<<< HEAD
     if (button == 0 && !event.ctrlKey) { // Left click
+=======
+    if (button == 1 || event.ctrlKey) // Middle Button or Ctrl click
+        chrome.tabs.create({ url: tabUrl, selected: false });
+    else if (button == 0) { // Left click
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
         chrome.tabs.getSelected(null, function (tab) {
             chrome.tabs.update(tab.id, {url: tabUrl});
             window.close();
@@ -100,7 +144,11 @@ function populateMenu() {
             newHTML += '<hr/>';
         } else if (indent == 0) {
             newHTML += '<div class="header-link">';
+<<<<<<< HEAD
             newHTML += '<a href="http://forums.somethingawful.com/forumdisplay.php?forumid=' + this.id + '" class="link link'+ indent +'">' + title + '</a><br/>';
+=======
+            newHTML += '<a onclick="javascript:openTab(\'http://forums.somethingawful.com/forumdisplay.php?forumid=' + this.id + '\')" href="javascript:" class="link link'+ indent +'">' + title + '</a><br/>';
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
             newHTML += '</div>';
         
         } else {
@@ -127,13 +175,20 @@ function populateMenuHelper(forum, color, stuck) {
 
     // Add sticky controls to popup window
     if (forum.sticky == true)
+<<<<<<< HEAD
         subHTML += '<div style="float:left;cursor:pointer;overflow-x: hidden;"><img src="../images/sticky_on.gif" class="' + forum.id + '" id="sticky-'+forum.id + '" /></div>';
     else
         subHTML += '<div style="float:left;cursor:pointer;overflow-x: hidden;"><img src="../images/sticky_off.gif" class="' + forum.id + '" id="sticky-'+forum.id + '" /></div>';
+=======
+        subHTML += '<div style="float:left;cursor:pointer;overflow-x: hidden;"><img src="../images/sticky_on.gif" onClick="javascript:toggleSticky('+forum.id+')" id="sticky-'+forum.id+'" /></div>';
+    else
+        subHTML += '<div style="float:left;cursor:pointer;overflow-x: hidden;"><img src="../images/sticky_off.gif" onClick="javascript:toggleSticky('+forum.id+')" id="sticky-'+forum.id+'" /></div>';
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
 
     // Dynamically set the 10's digit for padding here, since we can have any number
     // of indentations
     subHTML += '<div class="forum-link" style="padding-left: ' + indent + '0px; background: ' + color + ';">';
+<<<<<<< HEAD
     subHTML += '<a href="http://forums.somethingawful.com/forumdisplay.php?forumid=' + forum.id + '">' + title + '</a><br/>';
     subHTML += '</div>';
     return subHTML;
@@ -156,3 +211,9 @@ port.onMessage.addListener(function(data) {
 port.postMessage({
     'message': 'GetForumsJumpList'
 });    
+=======
+    subHTML += '<a onclick="javascript:openTab(\'http://forums.somethingawful.com/forumdisplay.php?forumid=' + forum.id + '\')" href="javascript:">' + title + '</a><br/>';
+    subHTML += '</div>';
+    return subHTML;
+}
+>>>>>>> e5b1c90d3fc67170d3619058ae9c379f45e91cd8
