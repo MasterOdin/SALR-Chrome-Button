@@ -1,6 +1,9 @@
 Something Awful Last Read Redux Button Extension for Chrome
 
 This adds a browser action button to the users toolbar, augmenting the functionality
-of the SALR extension for Chrome.  If this extension is installed, it will disable
+of the SALR Redux extension for Chrome.  If this extension is installed, it will disable
 the page action button in the omnibar for SALR.  This extension will not work
-without SALR installed.
+without SALR Redux installed.
+
+Installation done and updating done through Chrome:
+https://chrome.google.com/webstore/detail/something-awful-last-read/dodkgjokbnmiickhikhikpggfohagmfb
