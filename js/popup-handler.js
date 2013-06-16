@@ -147,7 +147,7 @@ port.onMessage.addListener(function(data) {
         openTab(event.currentTarget.href);
     });
     jQuery('img').on("click", function(event) {
-        toggleSticky(event.currentTarget.id.match(/\d/)[0]);
+        toggleSticky(event.currentTarget.id.match(/[0-9].*/)[0]);
     });
 
 
